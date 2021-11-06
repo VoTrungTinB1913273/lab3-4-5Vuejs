@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import router from "./router";
 import { handle } from "./common/promise";
+import store from "./store";
 //createApp(App)
 //   .mixin({
 //        methods: {
@@ -14,8 +15,20 @@ import { handle } from "./common/promise";
 
 const app=createApp(App);
 app.use(router);
-app.mixin({methods: {handle}});
-app.mount("#app");
 
-//createApp(App).mount('#app')
-//createApp(App).use(router).mount('#app');
+// app.mixin({methods: {handle}});
+// app.mount("#app");
+
+// createApp(App).mount('#app')
+// createApp(App).use(router).mount('#app');
+
+
+createApp(App)
+    .mixin({
+        methods: {
+            handle,
+        },
+    })
+.use(store)
+.use(router)
+.mount("#app");
